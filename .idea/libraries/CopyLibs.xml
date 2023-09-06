@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="CopyLibs">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/CopyLibs" />
+      <root url="file://$PROJECT_DIR$/lib/javaee-api-7.0" />
+      <root url="file://$PROJECT_DIR$/lib/javaee-endorsed-api-7.0" />
+      <root url="file://$PROJECT_DIR$/lib/javaee-web-api-7.0" />
+      <root url="file://$PROJECT_DIR$/lib/MySQLDriver" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/CopyLibs" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/javaee-api-7.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/javaee-endorsed-api-7.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/javaee-web-api-7.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/MySQLDriver" recursive="false" />
+  </library>
+</component>
