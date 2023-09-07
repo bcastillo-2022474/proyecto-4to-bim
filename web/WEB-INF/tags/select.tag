@@ -25,6 +25,7 @@
     })
 
     document.addEventListener("input", (e) => {
+        console.log("Input event triggered")
         const customSelect = e.target.closest(".custom-select")
         if (!customSelect) return
 
@@ -57,27 +58,25 @@
     })
 
     document.addEventListener("focus", (e) => {
-        if (!e.target?.closest) return;
-
-        const customSelectContainer =  e.target.closest(".custom-select-container");
+        const customSelectContainer = e.target?.closest?.(".custom-select-container");
         if (!customSelectContainer) return;
 
-
         const customSelectItemsContainer = customSelectContainer.querySelector(".custom-select-item-container");
-        customSelectItemsContainer.classList.remove("d-none")
-        customSelectItemsContainer.classList.add("d-flex")
-        customSelectItemsContainer.firstElementChild.classList.add("selected-item")
-    }, true)
+        customSelectItemsContainer.classList.remove("d-none");
+        customSelectItemsContainer.classList.add("d-flex");
+        customSelectItemsContainer.firstElementChild.classList.add("selected-item");
+    }, true);
 
     document.addEventListener("blur", (e) => {
-        if (!e.target?.closest) return;
+        const customSelectContainer = e.target?.closest?.(".custom-select-container");
+        if (!customSelectContainer) return;
 
-        const customSelect = e.target.closest(".custom-select")
-        const customSelectContainer = customSelect.closest(".custom-select-container");
-        if (!customSelectContainer) return
+        // const didClickItem = customSelectContainer.contains(e.relatedTarget)
+        // if (didClickItem) return;
 
+        const customSelect = customSelectContainer.querySelector(".custom-select");
         const selectedOption = customSelect.value;
-        const customSelectItems = [...customSelectContainer.querySelectorAll(".custom-select-item")]
+        const customSelectItems = [...customSelectContainer.querySelectorAll(".custom-select-item")];
         const customSelectItemsContainer = customSelectContainer.querySelector(".custom-select-item-container");
 
         if (customSelectItems.some((item) => item.innerText === selectedOption)) return;
@@ -85,35 +84,37 @@
         // if none matches
         customSelect.value = "";
 
-        customSelectItemsContainer.classList.remove("d-flex")
-        customSelectItemsContainer.classList.add("d-none")
-    }, true)
+        customSelectItemsContainer.classList.remove("d-flex");
+        customSelectItemsContainer.classList.add("d-none");
+
+    }, true);
+
 
     // returns [whatShouldBeTheSelectedIndex, whatCurrentlyIs]
     const getExpectedAndCurrentSelectedIndex = (customSelectItems) => {
-    const oldIndex = customSelectItems.findIndex(item => item.classList.contains("selected-item"));
+        const oldIndex = customSelectItems.findIndex(item => item.classList.contains("selected-item"));
 
-    // No item currently selected, so should be set to 0
-    if (oldIndex === -1 && customSelectItems.some(item => !item.classList.contains("d-none"))) return [0, -1];
+        // No item currently selected, so should be set to 0
+        if (oldIndex === -1 && customSelectItems.some(item => !item.classList.contains("d-none"))) return [0, -1];
 
-    let currentElementFound = false;
-    let displayedItemsCount = 0;
+        let currentElementFound = false;
+        let displayedItemsCount = 0;
 
-    for (const [index, item] of customSelectItems.entries()) {
-        if (item === customSelectItems[oldIndex]) currentElementFound = true;
+        for (const [index, item] of customSelectItems.entries()) {
+            if (item === customSelectItems[oldIndex]) currentElementFound = true;
 
-        if (item.classList.contains("d-none")) continue;
+            if (item.classList.contains("d-none")) continue;
 
-        if (currentElementFound)  return [displayedItemsCount, oldIndex];
+            if (currentElementFound) return [displayedItemsCount, oldIndex];
 
-        displayedItemsCount++;
+            displayedItemsCount++;
+        }
+        return [displayedItemsCount - 1, oldIndex];
     }
-    return [displayedItemsCount - 1, oldIndex];
-}
 
 
     document.addEventListener("keydown", (e) => {
-        const customSelect = e.target.closest(".custom-select")
+        const customSelect = e.target?.closest?.(".custom-select")
         if (!customSelect) return;
 
         if (e.key !== "ArrowUp" && e.key !== "ArrowDown" && e.key !== "Enter") return;
@@ -126,7 +127,7 @@
         if (customSelectActiveItems.length === 0) return;
 
 
-        const [selectedItemIndex, realSelectedIndex] = getExpectedAndCurrentSelectedIndex (customSelectItems);
+        const [selectedItemIndex, realSelectedIndex] = getExpectedAndCurrentSelectedIndex(customSelectItems);
         if (selectedItemIndex !== realSelectedIndex && realSelectedIndex !== -1) {
             customSelectItems[realSelectedIndex].classList.remove("selected-item")
         }
@@ -154,6 +155,8 @@
             "Enter": () => {
                 const dropdownSelectedOption = customSelectActiveItems[selectedItemIndex].textContent.trim();
                 customSelect.value = dropdownSelectedOption;
+
+                customSelect.dispatchEvent(new Event("input"), {bubbles: true});
             }
         }
 

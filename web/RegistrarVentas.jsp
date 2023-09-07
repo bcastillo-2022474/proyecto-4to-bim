@@ -1,6 +1,6 @@
-<jsp:useBean id="product" scope="request" type="modelo.Product"/>
-<jsp:useBean id="client" scope="request" type="modelo.Client"/>
-<jsp:useBean id="currentUser" scope="request" type="modelo.Employee"/>
+<jsp:useBean id="product" scope="request" class="modelo.Product"/>
+<jsp:useBean id="client" scope="request" class="modelo.Client"/>
+<jsp:useBean id="currentUser" scope="request" class="modelo.Employee"/>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -25,7 +25,7 @@
                         <div class="col-sm-6 d-flex">
                             <input type="text" name="txtIdClient" value="${client.id}"
                                    class="form-control" placeholder="Codigo">
-                            <input type="submit" name="accion" value="BuscarCliente" class="btn btn-outline-info">
+                            <button type="submit" name="accion" value="BuscarCliente" class="btn btn-outline-info">Enviar consulta</button>
                         </div>
                         <div class="col-sm-6">
                             <input type="text" name="txtNameClient" value="${client.names}"
@@ -103,7 +103,7 @@
                             <td>${list.getCantidad()}</td>
                             <td>${list.getSubTotal()}</td>
                             <td class="d-flex">
-                                <a href="#" class="btn btn-warning">Editar</a>
+                                <a href="#" class="btn btn-warning" onclick="getVenta()">Editar</a>
                                 <a href="#" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
                             </td>
                         </tr>
@@ -112,7 +112,7 @@
             </div>
             <div class="card-footer d-flex">
                 <div class="col-sm-6">
-                    <input type="submit" name="accion" value="Generar Ventana" class="btn btn-success">
+                    <input type="submit" name="accion" value="Generar Venta" class="btn btn-success">
                     <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
                 </div>
                 <div class="col-sm-4 ml-auto">

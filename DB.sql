@@ -75,9 +75,11 @@ values ('123456789123456', 'Pedro Armas', 'Mixco, Guatemala'),
        ('741852963852741', 'Maria Lopez', 'Villa Nueva, Guatemala');
 
 insert into Employee(DPI, names, phone_number, address, username, img_path)
-values ('1234', 'Joao Castillo', '54328553', 'Guatemala, Mixco', 'jcastillo', ''),
+values ('1234', 'Joao Castillo', '54328553', 'Guatemala, Mixco', 'jcastillo', 'img/jcastillo.png'),
+       ('1234', 'Alejandro Jimenez', '54328553', 'Guatemala, Mixco', 'jjimenez', 'img/jjimenez.png'),
+       ('1234', 'Jonathan Domingo', '54328553', 'Guatemala, Mixco', 'jdomingo', 'img/jdomingo.png'),
        ('4321', 'Juan Perez', '14785364', 'Villa Nueva', 'jperez', ''),
-       ('5678', 'Maria Lopez', '15697534', 'Antigua Guatemala','mlopez', ''),
+       ('5678', 'Maria Lopez', '15697534', 'Antigua Guatemala', 'mlopez', ''),
        ('1234', 'Luis Monterroso', '74196355', 'Amatitlan', 'lmonterroso', '');
 
 insert into Product(product_name, price, stock)
@@ -92,8 +94,23 @@ values ('Teclado Durabrand', 105.00, 25),
        ('Memoria RAM 32GB', 750.00, 4),
        ('Memoria RAM 64GB', 1250.00, 8);
 
-select * from Client;
-select * from Employee;
-select * from Product;
+select *
+from Client;
+select *
+from Employee;
+select *
+from Product;
 
-select * from Employee where DPI = '1234' and username  = 'jcastillo';
+create table CarSales
+(
+    id          int auto_increment primary key,
+    employee_id int not null,
+    quantity    int not null,
+
+    foreign key (employee_id) references Employee (id)
+);
+
+select *
+from Employee
+where DPI = '1234'
+  and username = 'jcastillo';

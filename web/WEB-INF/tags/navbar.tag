@@ -21,7 +21,7 @@
             <a class="btn btn-outline-light" href="ClientController">Clientes</a>
         </li>
         <li>
-            <a class="btn btn-outline-light" href="#">Registrar venta</a>
+            <a class="btn btn-outline-light" href="Controlador?menu=RegistrarVenta&accion=default">Registrar venta</a>
         </li>
     </ul>
     <div class="d-flex gap-3">
@@ -83,7 +83,10 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="LoginController?action=logout">Cerrar Sesión</a></li>
+                <li>
+                    <form action="LoginController" method="post">
+                        <button type="submit" class="dropdown-item" name="action" value="logout">Cerrar Sesión</button>
+                    </form></li>
             </ul>
         </div>
     </div>
