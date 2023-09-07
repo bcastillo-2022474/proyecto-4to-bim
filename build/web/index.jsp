@@ -17,21 +17,21 @@
         <div class="container mt-4 col-lg-4">
             <div class="card col-sm-10">
                 <div class="card-body">
-                    <form class="form-sign" action="Validar" method="POST">
+                    <form class="form-sign" action="LoginController" method="POST">
                         <div class="form-group text-center">
                             <h3>Login</h3>
-                            <img src="img/usuario.png" alt="70" width="130"/><br>
+                            <img src="img/default-user.png" alt="70" width="130"/><br>
                             <label>Bienvenidos al Sistema</label>
                         </div>
                         <div class="form-group">
                             <label>Usuario</label>
-                            <input type="text" name="txtUser" class="form-control">
+                            <input type="text" name="txtUsername" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input type="password" name="txtPass" class="form-control">
+                            <input type="password" name="txtPassword" class="form-control">
                         </div>
-                        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-block">
+                        <input type="submit" name="action" value="login" class="btn btn-primary btn-block">
                     </form>
                     
                 </div>
