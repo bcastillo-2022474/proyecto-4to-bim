@@ -9,12 +9,13 @@ public class Employee {
     private String address;
     private String username;
     private String imgPath;
+    private String selfDescription;
 
     // Constructor
     public Employee() {
     }
 
-    public Employee(int id, String DPI, String phoneNumber, String names, String address, String username, String imgPath) {
+    public Employee(int id, String DPI, String phoneNumber, String names, String address, String username, String imgPath, String selfDescription) {
         this.id = id;
         this.DPI = DPI;
         this.phoneNumber = phoneNumber;
@@ -22,6 +23,7 @@ public class Employee {
         this.address = address;
         this.username = username;
         this.imgPath = imgPath;
+        this.selfDescription = selfDescription;
     }
 
     // Getters
@@ -53,6 +55,10 @@ public class Employee {
         return imgPath;
     }
 
+    public String getSelfDescription() {
+        return selfDescription;
+    }
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -80,5 +86,9 @@ public class Employee {
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
+    }
+
+    public void setSelfDescription(String selfDescription) {
+        this.selfDescription = selfDescription;
     }
 }

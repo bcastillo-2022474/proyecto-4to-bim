@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static controlador.Constants.controllerHandlers;
@@ -69,34 +70,49 @@ public class Controlador extends HttpServlet {
         final Dao<Client> clientDao = new Dao<Client>(new ClientDaoHandler());
 
         if (!menu.equals("RegistrarVenta")) return;
+        try {
+            final HashMap<Integer, String> namesList = new HashMap<Integer, String>();
+            for (Client client : clientDao.getAll()) {
+                namesList.put(client.getId(), client.getNames());
+            }
+            req.setAttribute("namesList", namesList);
+
+            final HashMap<Integer, String> productsList = new HashMap<Integer, String>();
+            for (Product product : productDao.getAll()) {
+                productsList.put(product.getId(), product.getProductName());
+            }
+            req.setAttribute("productsList", productsList);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if ("BuscarCliente".equals(accion) || "BuscarClienteProducto".equals(accion)) {
+            System.out.println("txtIdClient: " + req.getParameter("txtIdClient"));
+            int id = Integer.parseInt(req.getParameter("txtIdClient"));
+
+            try {
+                client = clientDao.get(id);
+                req.setAttribute("client", client);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if ("BuscarProducto".equals(accion) || "BuscarClienteProducto".equals(accion)) {
+            int codProduc = Integer.parseInt(req.getParameter("txtCodigoProducto"));
+
+            try {
+                product = productDao.get(codProduc);
+                req.setAttribute("product", product);
+                req.setAttribute("lista", lista);
+                req.setAttribute("totalPagar", totalPagar);
+                req.setAttribute("client", client);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 
         switch (accion) {
-            case "BuscarCliente":
-                System.out.println("txtIdClient: " + req.getParameter("txtIdClient"));
-                int id = Integer.parseInt(req.getParameter("txtIdClient"));
-
-                try {
-                    client = clientDao.get(id);
-                    req.setAttribute("client", client);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                break;
-            case "BuscarProducto":
-                int codProduc = Integer.parseInt(req.getParameter("txtCodigoProducto"));
-
-                try {
-                    product = productDao.get(codProduc);
-                    req.setAttribute("product", product);
-                    req.setAttribute("lista", lista);
-                    req.setAttribute("totalPagar", totalPagar);
-                    req.setAttribute("client", client);
-
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                //                    req.getRequestDispatcher("Controlador?menu=RegistrarVenta&accion=BuscarProducto").forward(req, resp);
-                break;
             case "Agregar":
                 req.setAttribute("client", client);
                 double totalPagar = 0.0;

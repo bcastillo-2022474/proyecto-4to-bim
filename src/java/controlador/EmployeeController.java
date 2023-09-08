@@ -71,6 +71,7 @@ public class EmployeeController extends HttpServlet {
         String txtPhoneNumber = req.getParameter("txtPhoneNumber");
 
         try {
+            Employee oldEmployee = dao.get(Integer.parseInt(id));
             Employee employee = new Employee(
                     Integer.parseInt(id),
                     txtDPI,
@@ -78,7 +79,8 @@ public class EmployeeController extends HttpServlet {
                     txtName,
                     txtAddress,
                     txtUsername,
-                    ""
+                    oldEmployee.getImgPath(),
+                    oldEmployee.getSelfDescription()
             );
             dao.update(employee);
             resp.setStatus(200);
@@ -105,7 +107,8 @@ public class EmployeeController extends HttpServlet {
                     txtName,
                     txtAddress,
                     txtUsername,
-                    ""
+                    "",
+                    "No hay descripción aun"
             );
             dao.save(employee);
             System.out.println(employee);

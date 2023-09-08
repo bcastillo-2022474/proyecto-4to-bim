@@ -41,12 +41,13 @@ public class EmployeeDaoHandler implements EntityDaoHandler<Employee> {
         preparedStatement.setString(4, employee.getAddress());
         preparedStatement.setString(5, employee.getUsername());
         preparedStatement.setString(6, employee.getImgPath());
+        preparedStatement.setString(7, employee.getSelfDescription());
     }
 
     @Override
     public void setUpdateParameters(PreparedStatement preparedStatement, Employee model) throws SQLException {
         setSaveParameters(preparedStatement, model);
-        preparedStatement.setInt(7, model.getId());
+        preparedStatement.setInt(8, model.getId());
     }
 
     @Override
@@ -58,7 +59,8 @@ public class EmployeeDaoHandler implements EntityDaoHandler<Employee> {
                 resultSet.getString("names"),
                 resultSet.getString("address"),
                 resultSet.getString("username"),
-                resultSet.getString("img_path")
+                resultSet.getString("img_path"),
+                resultSet.getString("self_description")
         );
     }
 }

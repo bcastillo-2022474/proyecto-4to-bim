@@ -5,7 +5,8 @@
 <%@ page import="state.State" %>
 <jsp:useBean id="selectedProduct" scope="request" type="modelo.Product"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+
 
 <%--
     Document   : Producto

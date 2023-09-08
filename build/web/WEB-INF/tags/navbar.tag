@@ -1,5 +1,6 @@
 <%@ tag import="java.util.ArrayList" %>
 <%@ tag import="java.util.List" %>
+<%@ tag import="java.util.HashMap" %>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 <%@ attribute name="currentUser" required="true" rtexprvalue="true" type="modelo.Employee" %>
 
@@ -26,37 +27,37 @@
     </ul>
     <div class="d-flex gap-3">
         <%
-            List<String> list = new ArrayList<String>() {{
-               add("Apple iPhone 13 Pro Max");
-            add("Samsung Galaxy S21 Ultra");
-            add("Google Pixel 6 Pro");
-            add("Sony PlayStation 5");
-            add("Microsoft Xbox Series X");
-            add("Dell XPS 13 Laptop");
-            add("Lenovo ThinkPad X1 Carbon");
-            add("Logitech MX Master 3 Mouse");
-            add("Bose QuietComfort 45 Headphones");
-            add("Canon EOS R5 Mirrorless Camera");
-            add("Amazon Echo Show 10");
-            add("Fitbit Versa 3 Smartwatch");
-            add("Nintendo Switch OLED Model");
-            add("LG OLED65CXPUA 4K TV");
-            add("Razer BlackWidow V3 Pro Keyboard");
-            add("Anker PowerCore 26800 Power Bank");
-            add("GoPro HERO9 Black Action Camera");
-            add("Sony WH-1000XM4 Wireless Headphones");
-            add("Apple MacBook Pro 16-inch");
-            add("Microsoft Surface Laptop 4");
-            add("HP Spectre x360 13");
-            add("Asus ROG Strix G15 Gaming Laptop");
-            add("Samsung Odyssey G9 Gaming Monitor");
-            add("Sony Alpha a7 III Mirrorless Camera");
-            add("Bose SoundLink Revolve+ Bluetooth Speaker");
-            add("Garmin Forerunner 945 GPS Watch");
-            add("NVIDIA GeForce RTX 3080 Graphics Card");
-            add("Apple iPad Pro 12.9-inch");
-            add("Google Nest Hub Max");
-            add("Sonos Beam Soundbar");
+            HashMap<Integer, String> list = new HashMap<Integer, String>() {{
+                put(1, "Apple iPhone 13 Pro Max");
+                put(2, "Samsung Galaxy S21 Ultra");
+                put(3, "Google Pixel 6 Pro");
+                put(4, "Sony PlayStation 5");
+                put(5, "Microsoft Xbox Series X");
+                put(6, "Dell XPS 13 Laptop");
+                put(7, "Lenovo ThinkPad X1 Carbon");
+                put(8, "Logitech MX Master 3 Mouse");
+                put(9, "Bose QuietComfort 45 Headphones");
+                put(10, "Canon EOS R5 Mirrorless Camera");
+                put(11, "Amazon Echo Show 10");
+                put(12, "Fitbit Versa 3 Smartwatch");
+                put(13, "Nintendo Switch OLED Model");
+                put(14, "LG OLED65CXPUA 4K TV");
+                put(15, "Razer BlackWidow V3 Pro Keyboard");
+                put(16, "Anker PowerCore 26800 Power Bank");
+                put(17, "GoPro HERO9 Black Action Camera");
+                put(18, "Sony WH-1000XM4 Wireless Headphones");
+                put(19, "Apple MacBook Pro 16-inch");
+                put(20, "Microsoft Surface Laptop 4");
+                put(21, "HP Spectre x360 13");
+                put(22, "Asus ROG Strix G15 Gaming Laptop");
+                put(23, "Samsung Odyssey G9 Gaming Monitor");
+                put(24, "Sony Alpha a7 III Mirrorless Camera");
+                put(25, "Bose SoundLink Revolve+ Bluetooth Speaker");
+                put(26, "Garmin Forerunner 945 GPS Watch");
+                put(27, "NVIDIA GeForce RTX 3080 Graphics Card");
+                put(28, "Apple iPad Pro 12.9-inch");
+                put(29, "Google Nest Hub Max");
+                put(30, "Sonos Beam Soundbar");
             }};
         %>
         <custom:select list="<%= list %>"/>
@@ -86,7 +87,8 @@
                 <li>
                     <form action="LoginController" method="post">
                         <button type="submit" class="dropdown-item" name="action" value="logout">Cerrar Sesión</button>
-                    </form></li>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
