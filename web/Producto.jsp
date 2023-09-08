@@ -5,7 +5,8 @@
 <%@ page import="state.State" %>
 <jsp:useBean id="selectedProduct" scope="request" type="modelo.Product"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+
 
 <%--
     Document   : Producto
@@ -81,7 +82,7 @@
             method: "DELETE",
         }).then(() => {
             console.log("whuat")
-            window.location.href = window.origin + "/app/ProductController"
+            window.location.href = window.origin + "/proyecto-4to-bim/ProductController"
         })
     }
 
@@ -97,7 +98,7 @@
             // navigate to ProductController again, like a refresh
             .then(() => {
                 console.log("whuat")
-                window.location.href = window.origin + "/app/ProductController"
+                window.location.href = window.origin + "/proyecto-4to-bim/ProductController"
             })
     }
 </script>

@@ -1,6 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .cursor-pointer {
         cursor: pointer !important;
@@ -81,14 +82,22 @@ document.addEventListener("blur", (e) => {
     const customSelectItems = [...customSelectContainer.querySelectorAll(".custom-select-item")];
     const customSelectItemsContainer = customSelectContainer.querySelector(".custom-select-item-container");
 
-    if (customSelectItems.some((item) => item.innerText === selectedOption)) return;
-
-    // if none matches
-    customSelect.value = "";
 
     customSelectItemsContainer.classList.remove("d-flex");
     customSelectItemsContainer.classList.add("d-none");
+    if (customSelectItems.some((item) => {
+        if (item.innerText.trim() !== selectedOption) return false
 
+        customSelect.dataset.id = item.dataset.id;
+        return true;
+    })) {
+        customSelect.dispatchEvent(new Event("custom-select-change", {bubbles: true}));
+        return;
+    }
+
+    // if none matches
+    console.log("SETTING VALUE TO NONE")
+    customSelect.value = "";
 }, true);
 
 
@@ -166,8 +175,10 @@ document.addEventListener("keydown", (e) => {
         "Enter": () => {
             const dropdownSelectedOption = customSelectActiveItems[selectedItemIndex].textContent.trim();
             customSelect.value = dropdownSelectedOption;
+            customSelect.dataset.id = customSelectActiveItems[selectedItemIndex].dataset.id;
 
             customSelect.dispatchEvent(new Event("input", {bubbles: true}));
+            customSelect.dispatchEvent(new Event("custom-select-change", {bubbles: true}));
         }
     }
     console.log(customSelectContainer.querySelector(".selected-item"))

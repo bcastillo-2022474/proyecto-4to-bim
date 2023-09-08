@@ -104,7 +104,7 @@
             method: "DELETE",
         }).then(() => {
             console.log("whuat")
-            window.location.href = window.origin + "/app/ClientController"
+            window.location.href = window.origin + "/proyecto-4to-bim/ClientController"
         })
     }
 
@@ -126,7 +126,7 @@
             // navigate to ClientController again, like a refresh
             .then(() => {
                 console.log("whuat")
-                window.location.href = window.origin + "/app/ClientController"
+                window.location.href = window.origin + "/proyecto-4to-bim/ClientController"
             })
     }
 </script>

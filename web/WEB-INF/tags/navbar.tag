@@ -1,6 +1,10 @@
+<jsp:useBean id="productsSelected" scope="request"
+             type="java.util.HashMap<java.lang.Integer, config.Tuple<java.lang.Integer, java.lang.String>>"/>
 <%@ tag import="java.util.ArrayList" %>
 <%@ tag import="java.util.List" %>
+<%@ tag import="java.util.HashMap" %>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="currentUser" required="true" rtexprvalue="true" type="modelo.Employee" %>
 
 <nav class="d-flex sticky-top justify-between align-items-center bg-danger p-3">
@@ -25,41 +29,14 @@
         </li>
     </ul>
     <div class="d-flex gap-3">
-        <%
-            List<String> list = new ArrayList<String>() {{
-               add("Apple iPhone 13 Pro Max");
-            add("Samsung Galaxy S21 Ultra");
-            add("Google Pixel 6 Pro");
-            add("Sony PlayStation 5");
-            add("Microsoft Xbox Series X");
-            add("Dell XPS 13 Laptop");
-            add("Lenovo ThinkPad X1 Carbon");
-            add("Logitech MX Master 3 Mouse");
-            add("Bose QuietComfort 45 Headphones");
-            add("Canon EOS R5 Mirrorless Camera");
-            add("Amazon Echo Show 10");
-            add("Fitbit Versa 3 Smartwatch");
-            add("Nintendo Switch OLED Model");
-            add("LG OLED65CXPUA 4K TV");
-            add("Razer BlackWidow V3 Pro Keyboard");
-            add("Anker PowerCore 26800 Power Bank");
-            add("GoPro HERO9 Black Action Camera");
-            add("Sony WH-1000XM4 Wireless Headphones");
-            add("Apple MacBook Pro 16-inch");
-            add("Microsoft Surface Laptop 4");
-            add("HP Spectre x360 13");
-            add("Asus ROG Strix G15 Gaming Laptop");
-            add("Samsung Odyssey G9 Gaming Monitor");
-            add("Sony Alpha a7 III Mirrorless Camera");
-            add("Bose SoundLink Revolve+ Bluetooth Speaker");
-            add("Garmin Forerunner 945 GPS Watch");
-            add("NVIDIA GeForce RTX 3080 Graphics Card");
-            add("Apple iPad Pro 12.9-inch");
-            add("Google Nest Hub Max");
-            add("Sonos Beam Soundbar");
-            }};
-        %>
-        <custom:select list="<%= list %>"/>
+        <div class="position-relative">
+            <h1><a href="Controlador?menu=cart">
+                <i class="fa-solid fa-cart-shopping cursor-pointer"></i>
+            </a></h1>
+            <c:if test="${productsSelected.size() > 0 || productsSelected != null}">
+                <div style="top: 0; right: 5px" class="position-absolute bg-danger rounded-full">${productsSelected.size()}</div>
+            </c:if>
+        </div>
         <div class="dropdown">
             <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton2"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,7 +63,8 @@
                 <li>
                     <form action="LoginController" method="post">
                         <button type="submit" class="dropdown-item" name="action" value="logout">Cerrar Sesión</button>
-                    </form></li>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>

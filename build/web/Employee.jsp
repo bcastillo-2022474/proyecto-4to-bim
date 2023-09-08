@@ -119,7 +119,7 @@
             method: "DELETE",
         }).then(() => {
             console.log("whuat")
-            window.location.href = window.origin + "/app/EmployeeController"
+            window.location.href = window.origin + "/proyecto-4to-bim/EmployeeController"
         })
     }
 
@@ -141,7 +141,7 @@
             // navigate to EmployeeController again, like a refresh
             .then(() => {
                 console.log("whuat")
-                window.location.href = window.origin + "/app/EmployeeController"
+                window.location.href = window.origin + "/proyecto-4to-bim/EmployeeController"
             })
     }
 </script>

@@ -16,7 +16,8 @@
 <body class="vh-100">
 <custom:navbar currentUser="${currentUser}" />
 <div class="p-3 h-100">
-    save Info as db
+    ${currentUser.selfDescription}
+        <img class="w-100" src="${empty currentUser.imgPath ? "img/default-user.png" : currentUser.imgPath}" alt="">
 </div>
 </body>
 </html>

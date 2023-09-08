@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/web/Client.jsp" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/Producto.jsp" value="file://$PROJECT_DIR$/web" />
+        <entry key="file://$PROJECT_DIR$/web/RegistrarVentas.jsp" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/tags/select.tag" value="file://$PROJECT_DIR$/web/WEB-INF/tags" />
       </map>
     </option>

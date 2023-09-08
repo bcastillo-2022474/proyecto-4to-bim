@@ -18,6 +18,7 @@ public class SetState implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         System.out.println("SetState middleware");
         req.setAttribute("currentUser", State.currentUser);
+        req.setAttribute("productsSelected", State.selectedProducts);
         chain.doFilter(req, resp);
     }
 

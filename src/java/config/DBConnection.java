@@ -11,7 +11,7 @@ public class DBConnection {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DB2022_474?autoReconnect=true&useSSL=false", "quinto", "admin");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DB2022_474?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true", "quinto", "admin");
         } catch (Exception e){
             e.printStackTrace();
             System.out.println("No se puedo establecer la conexion :(");
