@@ -24,6 +24,7 @@ create table Employee
     # state varchar(1) not null,
     username     varchar(50)  not null,
     img_path     varchar(150) not null,
+    self_description varchar(3000) not null default 'No hay Descripción aun',
 
     primary key (id)
 );
